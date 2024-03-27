@@ -1,0 +1,20 @@
+#Problem of the day 27-03-2024
+'''
+Given an array of integers nums and an integer k, return the number of contiguous subarrays where the product of all the elements in the subarray is strictly less than k.
+Example 1:
+Input: nums = [10,5,2,6], k = 100
+Output: 8
+'''
+#CODE
+class Solution:
+    def numSubarrayProductLessThanK(self, nums: List[int], k: int) -> int:
+        c=0
+        p=1
+        l=0
+        for i in range(len(nums)):
+            p=p*nums[i]
+            while p>=k and l<=i:
+                p=p/nums[l]
+                l=l+1
+            c=c+i-l+1
+        return c
