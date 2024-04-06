@@ -1,0 +1,22 @@
+class Solution:
+    def minRemoveToMakeValid(self, s: str) -> str:
+        stack=[]
+        res=set()
+        for i,j in enumerate(s):
+            if j=='(':
+                stack.append(i)
+            elif j==')':
+                if not stack:
+                    res.add(i)
+                else:
+                    stack.pop()
+        res.update(stack)
+        r=''
+        for i,j in enumerate(s):
+            if i not in res:
+                r+=j
+        return r
+'''
+Input=(a(b(c)d)
+Output=a(b(c)d)
+'''
